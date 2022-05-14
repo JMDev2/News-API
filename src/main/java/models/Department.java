@@ -3,48 +3,48 @@ package models;
 import java.util.Objects;
 
 public class Department {
-    private String depName;
-    private String depDescription;
-    private int depEmplNo;
+    private String name;
+    private String description;
+    private int employees;
     private int id;
 
-    public Department(String depName, String depDescription, int depEmplNo, int id) {
-        this.depName = depName;
-        this.depDescription = depDescription;
-        this.depEmplNo = depEmplNo;
+    public Department(String name, String description, int employees, int id) {
+        this.name = name;
+        this.description = description;
+        this.employees = employees;
         this.id = id;
     }
 
-    public Department(String depName, String depDescription, int depEmplNo) {
-        this.depName = depName;
-        this.depDescription = depDescription;
-        this.depEmplNo = depEmplNo;
+    public Department(String name, String description, int employees) {
+        this.name = name;
+        this.description = description;
+        this.employees = employees;
 
 
     }
 
-    public String getDepName() {
-        return depName;
+    public String getName() {
+        return name;
     }
 
-    public void setDepName(String depName) {
-        this.depName = depName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDepDescription() {
-        return depDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDepDescription(String depDescription) {
-        this.depDescription = depDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getDepEmplNo() {
-        return depEmplNo;
+    public int getEmployees() {
+        return employees;
     }
 
-    public void setDepEmplNo(int depEmplNo) {
-        this.depEmplNo = depEmplNo;
+    public void setEmployees(int employees) {
+        this.employees = employees;
     }
 
     public int getId() {
@@ -60,14 +60,14 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return depEmplNo == that.depEmplNo &&
+        return employees == that.employees &&
                 id == that.id &&
-                Objects.equals(depName, that.depName) &&
-                Objects.equals(depDescription, that.depDescription);
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(depName, depDescription, depEmplNo, id);
+        return Objects.hash(name, description, employees, id);
     }
 }

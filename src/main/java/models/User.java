@@ -6,21 +6,21 @@ public class User {
     private int id;
     private String name;
     private String position;
-    private int Department_id;
+    private int DepartmentId;
     private String role;
 
-    public User(int id, String name, String position, int department_id, String role) {
+    public User(int id, String name, String position, int departmentId, String role) {
         this.id = id;
         this.name = name;
         this.position = position;
-        Department_id = department_id;
+        DepartmentId = departmentId;
         this.role = role;
     }
 
-    public User(String name, String position, int department_id, String role) {
+    public User(String name, String position, int departmentId, String role) {
         this.name = name;
         this.position = position;
-        Department_id = department_id;
+        DepartmentId = departmentId;
         this.role = role;
     }
 
@@ -48,12 +48,12 @@ public class User {
         this.position = position;
     }
 
-    public int getDepartment_id() {
-        return Department_id;
+    public int getDepartmentId() {
+        return DepartmentId;
     }
 
-    public void setDepartment_id(int department_id) {
-        Department_id = department_id;
+    public void setDepartmentId(int departmentId) {
+        DepartmentId = departmentId;
     }
 
     public String getRole() {
@@ -70,7 +70,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id == user.id &&
-                Department_id == user.Department_id &&
+                DepartmentId == user.DepartmentId &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(position, user.position) &&
                 Objects.equals(role, user.role);
@@ -78,6 +78,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, position, Department_id, role);
+        return Objects.hash(id, name, position, DepartmentId, role);
     }
 }
