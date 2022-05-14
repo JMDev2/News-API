@@ -12,10 +12,6 @@ public interface UserDao {
     List<User> getAllUsers();
     User getUsersById(int id);
 
-//        SPECIFUSER
-    User findById(int id);
-
-
 //    UPDATE
 //    DELETE
     void deleteUser(int id);
