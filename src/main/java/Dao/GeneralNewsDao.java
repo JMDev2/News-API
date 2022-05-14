@@ -1,4 +1,4 @@
-package interfaces;
+package Dao;
 
 import models.GeneralNews;
 
