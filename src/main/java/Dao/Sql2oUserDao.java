@@ -15,18 +15,16 @@ public class Sql2oUserDao implements UserDao{
 
     @Override
     public void addUser(User user) {
-        String sql = "INSERT INTO users(name, position, departmentid, role) VALUES (:name, :position, :departmentid, :role)";
+        String sql = "INSERT INTO users(name, position, departmentid, role) VALUES (:name, :position, :departmentId, :role)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql, true)
                     .bind(user)
                     .executeUpdate()
                     .getKey();
             user.setId(id);
-
         }catch (Sql2oException ex){
             System.out.println(ex);
         }
-
     }
 
     @Override
@@ -38,16 +36,12 @@ public class Sql2oUserDao implements UserDao{
             }
         }
 
-
-
     @Override
     public User getUsersById(int id) {
         try (Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM users WHERE id=id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(User.class);
-
-
         }
     }
 
@@ -58,7 +52,6 @@ public class Sql2oUserDao implements UserDao{
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
-
         }catch (Sql2oException ex){
             System.out.println(ex);
         }
