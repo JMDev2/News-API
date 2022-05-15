@@ -6,21 +6,21 @@ public class User {
     private int id;
     private String name;
     private String position;
-    private int DepartmentId;
+    private int departmentId;
     private String role;
 
     public User(int id, String name, String position, int departmentId, String role) {
         this.id = id;
         this.name = name;
         this.position = position;
-        DepartmentId = departmentId;
+        this.departmentId = departmentId;
         this.role = role;
     }
 
     public User(String name, String position, int departmentId, String role) {
         this.name = name;
         this.position = position;
-        DepartmentId = departmentId;
+        this.departmentId = departmentId;
         this.role = role;
     }
 
@@ -49,11 +49,11 @@ public class User {
     }
 
     public int getDepartmentId() {
-        return DepartmentId;
+        return departmentId;
     }
 
     public void setDepartmentId(int departmentId) {
-        DepartmentId = departmentId;
+        this.departmentId = departmentId;
     }
 
     public String getRole() {
@@ -70,7 +70,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id == user.id &&
-                DepartmentId == user.DepartmentId &&
+                departmentId == user.departmentId &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(position, user.position) &&
                 Objects.equals(role, user.role);
@@ -78,6 +78,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, position, DepartmentId, role);
+        return Objects.hash(id, name, position, departmentId, role);
     }
 }
