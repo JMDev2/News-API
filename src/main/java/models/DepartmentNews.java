@@ -6,8 +6,8 @@ public class DepartmentNews extends GeneralNews {
     private int did;
     private static final String TYPE = "DepartmenttNews";
 
-    public DepartmentNews(String title, String content, int departmentId, int did) {
-        super(title, content, departmentId);
+    public DepartmentNews(String title, String content, int departmentid) {
+        super(title, content, departmentid);
         this.did = did;
 
     }
