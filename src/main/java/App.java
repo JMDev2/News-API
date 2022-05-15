@@ -130,6 +130,16 @@ public class App {
             return gson.toJson(responseObject);
 
         });
+        get("/generalNews", "application/json", (request, response) -> {
+            response.type("application/json");
+            return gson.toJson(sql2oGeneralNewsDao.getAllNews());
+        });
+        get("/generalNews", "application/json", (request, response) -> {
+            response.type("application/json");
+            int genId = Integer.parseInt(request.params("id"));
+            response.type("application/json");
+            return gson.toJson(sql2oGeneralNewsDao.getGeneralNewsById(genId));
+        });
 
 
 
