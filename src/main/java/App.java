@@ -107,6 +107,17 @@ public class App {
             return gson.toJson(responseObject);
 
         });
+        get("/departmentNews", "application/json", ((request, response) -> {
+            response.type("application/json");
+            return gson.toJson(sql2oDepartmentNewsDao.getAllNews());
+        }));
+
+        get("/departmentNews", "application/json", ((request, response) -> {
+            response.type("application/json");
+            int depid = Integer.parseInt(request.params("id"));
+            response.type("application/json");
+            return gson.toJson(sql2oDepartmentNewsDao.getDepartmentNewsById(depid));
+        }));
 
         post("/generalNews/new", (request, response) -> {
             System.out.println(request.body());
@@ -119,11 +130,6 @@ public class App {
             return gson.toJson(responseObject);
 
         });
-
-
-
-
-
 
 
 
