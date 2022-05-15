@@ -6,19 +6,19 @@ public class GeneralNews {
     private int id;
     private String title;
     private String content;
-    private int departmentId;
+    private int departmentid;
 
-    public GeneralNews(int id, String title, String content, int departmentId) {
+    public GeneralNews(int id, String title, String content, int departmentid) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.departmentId = departmentId;
+        this.departmentid = departmentid;
     }
 
-    public GeneralNews(String title, String content, int departmentId) {
+    public GeneralNews(String title, String content, int departmentid) {
         this.title = title;
         this.content = content;
-        this.departmentId = departmentId;
+        this.departmentid = departmentid;
     }
 
     public int getId() {
@@ -45,12 +45,12 @@ public class GeneralNews {
         this.content = content;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public int getDepartmentid() {
+        return departmentid;
     }
 
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentid(int departmentid) {
+        this.departmentid = departmentid;
     }
 
     @Override
@@ -59,13 +59,13 @@ public class GeneralNews {
         if (o == null || getClass() != o.getClass()) return false;
         GeneralNews that = (GeneralNews) o;
         return id == that.id &&
-                departmentId == that.departmentId &&
+                departmentid == that.departmentid &&
                 Objects.equals(title, that.title) &&
                 Objects.equals(content, that.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, departmentId);
+        return Objects.hash(id, title, content, departmentid);
     }
 }
