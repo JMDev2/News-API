@@ -3,16 +3,18 @@ package models;
 import java.util.Objects;
 
 public class Department {
+    private int id;
     private String name;
     private String description;
     private int employees;
-    private int id;
 
-    public Department(String name, String description, int employees, int id) {
+
+    public Department(int id, String name, String description, int employees){
+        this.id = id;
         this.name = name;
         this.description = description;
         this.employees = employees;
-        this.id = id;
+
     }
 
     public Department(String name, String description, int employees) {
