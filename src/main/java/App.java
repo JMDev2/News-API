@@ -83,6 +83,18 @@ public class App {
             return gson.toJson(responseObject);
 
         });
+        get("/users", "application/json" , (request, response) -> { //accept a request in format JSON from an app
+            response.type("application/json");
+            return gson.toJson(sql2oUserDao.getAllUsers());//send it back to be displayed
+        });
+
+        get("/users",  "application/json", ((request, response) -> {
+            response.type("application/json");
+            int userid = Integer.parseInt(request.params("id"));
+            response.type("application/json");
+            return gson.toJson(sql2oUserDao.getAllUsers());
+        }));
+
 
         post("/departmentNews/new", (request, response) -> {
             System.out.println(request.body());
@@ -108,15 +120,6 @@ public class App {
 
         });
 
-        get("/users", "application/json", ((request, response) -> {
-            response.type("application/json");
-            if(sql2oUserDao.getAllUsers().size() == 0){
-                return "{\"message\":\"I'm sorry, but no users yet added.\"}";
-            }else{
-                return gson.toJson(sql2oUserDao.getAllUsers());//send it back to be displayed
-            }
-
-        }));
 
 
 
