@@ -25,8 +25,6 @@ public class App {
         String connect = "jdbc:postgresql://localhost:5432/newsapi";
         Sql2o sql2o = new Sql2o(connect,"postgres","MAINA");
 
-
-
         Sql2oUserDao sql2oUserDao = new Sql2oUserDao(sql2o);
         Sql2oDepartmentDao sql2oDepartmentDao = new Sql2oDepartmentDao(sql2o);
         Sql2oGeneralNewsDao sql2oGeneralNewsDao = new Sql2oGeneralNewsDao(sql2o);
@@ -63,13 +61,30 @@ public class App {
             return gson.toJson(responseObject);
 
         });
-
+//            GETTING ALL DEPARTMENTS
         get("/department", "application/json", (request, response) -> { //accept a request in format JSON from an app
             response.type("application/json");
             int departmentid = Integer.parseInt(request.params("id"));
             response.type("application/json");
             return gson.toJson(sql2oDepartmentDao.getDepartmentById(departmentid));
         });
+
+//            getting specific department
+        get("/departments/:id", "application/json", (request, response) -> {
+            int departmentid = Integer.parseInt(request.params("id"));
+
+            if (sql2oDepartmentDao.getDepartmentById(departmentid) == null){
+                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", request.params("id")));
+            }
+
+            else {
+                return gson.toJson(sql2oDepartmentDao.getDepartmentById(departmentid));
+            }
+        });
+
+//        *****************END OF DEPARTMENTS*********************************
+
+//        POSTING USERS
 
         post("/user/new", (request, response) -> {
             System.out.println(request.body());
@@ -81,6 +96,7 @@ public class App {
 
             return gson.toJson(responseObject);
 
+//            GETTING ALL USERS
         });
         get("/users", "application/json" , (request, response) -> { //accept a request in format JSON from an app
             response.type("application/json");
@@ -94,7 +110,7 @@ public class App {
             return gson.toJson(sql2oUserDao.getAllUsers());
         }));
 
-
+//            CHECKING USER BY ID
         get("/users/:id",  "application/json", (request, response) -> {
             response.type("application/json");
             int userid = Integer.parseInt(request.params("id"));
@@ -108,6 +124,9 @@ public class App {
             }
         });
 
+//        **************END USERS*****************
+
+//        POSTING A DEPARTMENT
         post("/departmentNews/new", (request, response) -> {
             System.out.println(request.body());
             DepartmentNews departmentNews = gson.fromJson(request.body(), DepartmentNews.class);
@@ -119,17 +138,21 @@ public class App {
             return gson.toJson(responseObject);
 
         });
-        get("/departmentNews", "application/json", ((request, response) -> {
+        get("/departmentNews", "application/json", (request, response) -> {
             response.type("application/json");
             return gson.toJson(sql2oDepartmentNewsDao.getAllNews());
-        }));
+        });
 
-        get("/departmentNews", "application/json", ((request, response) -> {
+        get("/departmentNews", "application/json", (request, response) -> {
             response.type("application/json");
             int depid = Integer.parseInt(request.params("id"));
             response.type("application/json");
             return gson.toJson(sql2oDepartmentNewsDao.getDepartmentNewsById(depid));
-        }));
+        });
+
+//        **************END OF DEPARTMENTS*******************
+
+//        POSTING GENERAL NEWS
 
         post("/generalNews/new", (request, response) -> {
             System.out.println(request.body());
@@ -155,19 +178,6 @@ public class App {
         });
 
 
-//
-//            getting specific department
-        get("/departments/:id", "application/json", (request, response) -> {
-            int departmentid = Integer.parseInt(request.params("id"));
-
-            if (sql2oDepartmentDao.getDepartmentById(departmentid) == null){
-                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", request.params("id")));
-            }
-
-            else {
-                return gson.toJson(sql2oDepartmentDao.getDepartmentById(departmentid));
-            }
-        });
 
 
         post("/users/:userid/department/:departmentid", "application/json", (request, response) -> {
@@ -207,6 +217,7 @@ public class App {
         });
 
 
+//        FILTERS AND EXCEPTIONS
         exception(ApiException.class, (exc, req, res) -> {
             ApiException err = (ApiException) exc;
             Map<String, Object> jsonMap = new HashMap<>();
