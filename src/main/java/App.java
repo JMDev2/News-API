@@ -62,7 +62,7 @@ public class App {
 
         });
 //            GETTING ALL DEPARTMENTS
-        get("/department", "application/json", (request, response) -> { //accept a request in format JSON from an app
+        get("/departments", "application/json", (request, response) -> { //accept a request in format JSON from an app
             response.type("application/json");
             int departmentid = Integer.parseInt(request.params("id"));
             response.type("application/json");
@@ -137,6 +137,7 @@ public class App {
 
             return gson.toJson(responseObject);
 
+
         });
         get("/departmentNews", "application/json", (request, response) -> {
             response.type("application/json");
@@ -145,9 +146,9 @@ public class App {
 
         get("/departmentNews", "application/json", (request, response) -> {
             response.type("application/json");
-            int depid = Integer.parseInt(request.params("id"));
+            int id = Integer.parseInt(request.params("id"));
             response.type("application/json");
-            return gson.toJson(sql2oDepartmentNewsDao.getDepartmentNewsById(depid));
+            return gson.toJson(sql2oDepartmentNewsDao.getDepartmentNewsById(id));
         });
 
 //        **************END OF DEPARTMENTS*******************
@@ -177,6 +178,19 @@ public class App {
             return gson.toJson(sql2oGeneralNewsDao.getGeneralNewsById(genId));
         });
 
+        //        getting users in a department
+        get("/departments/:id/users", "application/json", (req, res) -> {
+            int departmentId = Integer.parseInt(req.params("id"));
+
+            Department departmentToFind = sql2oDepartmentDao.getDepartmentById(departmentId);
+
+            if (departmentToFind == null){
+                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
+            }
+
+            return gson.toJson(sql2oDepartmentDao.getDepartmentNews(departmentToFind));
+        });
+
 
 
 
@@ -203,18 +217,7 @@ public class App {
         });
 
 
-//        getting users in a department
-        get("/departments/:id/users", "application/json", (req, res) -> {
-            int departmentId = Integer.parseInt(req.params("id"));
 
-            Department departmentToFind = sql2oDepartmentDao.getDepartmentById(departmentId);
-
-            if (departmentToFind == null){
-                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
-            }
-
-            return gson.toJson(sql2oDepartmentDao.getDepartmentNews(departmentToFind));
-        });
 
 
 //        FILTERS AND EXCEPTIONS

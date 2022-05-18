@@ -23,10 +23,15 @@ id serial PRIMARY KEY,
   );
 
 CREATE TABLE departments(
+id serial PRIMARY KEY,
 name varchar,
 description varchar,
-employees varchar,
-id serial PRIMARY KEY
+employees varchar
+);
+CREATE TABLE user_department(
+id SERIAL PRIMARY KEY,
+userid int,
+departmentid int
 );
 
 CREATE DATABASE newsapi_test WITH TEMPLATE newsapi;

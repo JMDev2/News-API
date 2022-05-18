@@ -22,6 +22,7 @@ public class Sql2oUserDao implements UserDao{
                     .executeUpdate()
                     .getKey();
             user.setId(id);
+            System.out.println("my id"+id);
         }catch (Sql2oException ex){
             System.out.println(ex);
         }

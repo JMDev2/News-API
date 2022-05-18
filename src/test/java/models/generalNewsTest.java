@@ -11,7 +11,7 @@ public class generalNewsTest {
 
         GeneralNews generalNews = new GeneralNews(1,"IT","cool",2);
 
-        assertEquals(1, generalNews.getId());
+        assertEquals(1, generalNews.getDid());
     }
 
     @Test

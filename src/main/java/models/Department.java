@@ -9,21 +9,20 @@ public class Department {
     private int employees;
 
 
-    public Department(int id, String name, String description, int employees){
+    public Department(String name, String description, int employees){
         this.id = id;
         this.name = name;
         this.description = description;
-        this.employees = employees;
+        this.employees = 0;
 
     }
 
-    public Department(String name, String description, int employees) {
-        this.name = name;
-        this.description = description;
-        this.employees = employees;
+//    public Department(String name, String description, int employees) {
+//        this.name = name;
+//        this.description = description;
+//        this.employees = employees;
 
 
-    }
 
     public String getName() {
         return name;

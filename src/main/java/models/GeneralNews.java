@@ -21,12 +21,12 @@ public class GeneralNews {
         this.departmentid = departmentid;
     }
 
-    public int getId() {
+    public int getDid() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDid(int did) {
+        this.id = did;
     }
 
     public String getTitle() {
